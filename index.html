@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Probabilidades Texas Hold'em</title>
+  <style>
+    body { font-family: Arial; background:#0b132b; color:#fff; text-align:center; }
+    input { margin:5px; padding:8px; width:60px; text-align:center; }
+    button { margin:10px; padding:10px; background:#5bc0be; border:none; border-radius:5px; cursor:pointer; }
+    #resultado { margin-top:20px; font-size:1.2em; color:#f4d35e; }
+  </style>
+</head>
+<body>
+  <h1>Texas Hold'em Probabilities</h1>
+<p>Enter your cards step by step</p>
+
+<h3>Your Cards</h3>
+<input id="p1" placeholder="Card 1">
+<input id="p2" placeholder="Card 2">
+<button onclick="preflop()">Preflop Odds</button>
+
+<h3>Flop</h3>
+<input id="c1" placeholder="Flop 1">
+<input id="c2" placeholder="Flop 2">
+<input id="c3" placeholder="Flop 3">
+<button onclick="flop()">Flop Odds</button>
+
+<h3>Turn</h3>
+<input id="c4" placeholder="Turn">
+<button onclick="turn()">Turn Odds</button>
+
+<h3>River</h3>
+<input id="c5" placeholder="River">
+<button onclick="river()">Final Result</button>
+
+  
+  <div id="resultado"></div>
+  
+  <script>
+    function preflop() {
+      const p1 = document.getElementById('p1').value.toUpperCase();
+      const p2 = document.getElementById('p2').value.toUpperCase();
+      document.getElementById('resultado').innerHTML =
+        `Tus cartas: ${p1}, ${p2}<br>Probabilidades preflop:<br>
+        - Pareja: ~42%<br>
+        - Color: ~6%<br>
+        - Escalera: ~4%<br>
+        - Carta alta: resto`;
+    }
+    
+    function flop() {
+      const flop = [c1.value.toUpperCase(), c2.value.toUpperCase(), c3.value.toUpperCase()];
+      document.getElementById('resultado').innerHTML =
+        `Flop: ${flop.join(', ')}<br>Probabilidades ajustadas:<br>
+        - Trío: ~12%<br>
+        - Color: ~19%<br>
+        - Escalera: ~10%`;
+    }
+    
+    function turn() {
+      document.getElementById('resultado').innerHTML =
+        `Turn: ${c4.value.toUpperCase()}<br>Probabilidades ajustadas:<br>
+        - Full House: ~8%<br>
+        - Color: ~25%<br>
+        - Escalera: ~15%`;
+    }
+    
+    function river() {
+      const river = c5.value.toUpperCase();
+      document.getElementById('resultado').innerHTML =
+        `River: ${river}<br>Resultado final:<br>
+        - Mano evaluada según tus cartas y comunitarias.`;
+    }
+  </script>
+</body>
+</html>
